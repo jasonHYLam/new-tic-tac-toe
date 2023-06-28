@@ -65,8 +65,8 @@ const gameController = (function() {
     let currentPlayer = player1;
     console.log(currentPlayer);
 
-    function swapPlayer(currentPlayer) {
-        currentPlayer == player1? player2 : player1;
+    function swapPlayer() {
+        currentPlayer = currentPlayer.getMarker() == player1.getMarker() ? player2 : player1;
     }
 
     console.log('what does this uncover');
@@ -74,27 +74,32 @@ const gameController = (function() {
     function playRound() {
 
         // while game is not over
-    // place a marker
-        let row = prompt('row');
-        let column = prompt('column');
+        for (let i = 0; i< 4; i++) {
+        // place a marker
+            let row = prompt('row');
+            let column = prompt('column');
 
-        // check for valid play (ie not on filled position)
-        // console.log(gameBoard.getBoard()[row][column].getMarker())
-        if (gameBoard.getBoard()[row][column].getMarker() != '0') {
-            console.log("space is currently filled, try again");
-            alert("space is currently filled, try again");
-            return;
+            console.log(currentPlayer.getMarker());
+            // check for valid play (ie not on filled position)
+            // console.log(gameBoard.getBoard()[row][column].getMarker())
+            if (gameBoard.getBoard()[row][column].getMarker() != '0') {
+                console.log("space is currently filled, try again");
+                alert("space is currently filled, try again");
+                return;
+            }
+
+
+            gameBoard.addPiece(row, column, currentPlayer.getMarker());
+            gameBoard.displayBoard();
+            swapPlayer();
+
+
+
+        // update the board
+        // check for a win condition
+        // swap the current player
+            
         }
-
-
-        gameBoard.addPiece(row, column, currentPlayer.getMarker());
-        gameBoard.displayBoard();
-
-
-
-    // update the board
-    // check for a win condition
-    // swap the current player
     }
 
     playRound()
