@@ -17,9 +17,7 @@ const gameBoard = (function () {
     }
 
     function addPiece(row, column) {
-        console.log(board[row][column]);
         board[row][column].changeMarker();
-        console.log(board[row][column].getMarker());
     }
 
     function displayBoard() {
@@ -69,16 +67,36 @@ const gameController = (function() {
 
     function swapPlayer(currentPlayer) {
         currentPlayer == player1? player2 : player1;
-
-
     }
 
+    function determinePosition() {
+        return prompt("row and column");
+    }
+
+
+    console.log('what does this uncover');
     // play a round
     function playRound() {
     // place a marker
+        let row = prompt('row');
+        let column = prompt('column');
+        // check for valid play (ie not on filled position)
+        console.log(gameBoard.getBoard()[row][column].getMarker())
+        if (gameBoard.getBoard()[row][column].getMarker() != '0') {
+            console.log("space is currently filled, try again");
+            alert("space is currently filled, try again");
+            return;
+        }
+
+        gameBoard.addPiece(row, column)
+        gameBoard.displayBoard();
+
+
+
     // update the board
     // check for a win condition
     // swap the current player
-
     }
+
+    playRound()
 })();
