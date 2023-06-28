@@ -19,7 +19,7 @@ const gameBoard = (function () {
     function addPiece(row, column) {
         console.log(board[row][column]);
         board[row][column].changeMarker();
-        console.log(board[row][column]);
+        console.log(board[row][column].getMarker());
     }
 
     function displayBoard() {
@@ -45,9 +45,29 @@ function createCell() {
     function changeMarker() {
         marker = 'x';
     }
-    return {marker, getMarker, changeMarker};
+    return {getMarker, changeMarker};
 };
 
 
 gameBoard.addPiece(1,1)
 gameBoard.displayBoard();
+
+function createPlayer(name, marker) {
+    let playerName = name;
+    let playerMarker = marker;
+    const getName = () => playerName;
+    const getMarker = () => playerMarker;
+    return {getName, getMarker}
+}
+const gameController = (function() {
+    // create players
+    const player1 = createPlayer('jeff', 'x');
+    const player2 = createPlayer('herb', 'o');
+
+    // set the current player
+    // play a round
+    // place a marker
+    // update the board
+    // check for a win condition
+    // swap the current player
+})();
