@@ -16,8 +16,8 @@ const gameBoard = (function () {
         return board;
     }
 
-    function addPiece(row, column) {
-        board[row][column].changeMarker();
+    function addPiece(row, column, playerMarker) {
+        board[row][column].changeMarker(playerMarker);
     }
 
     function displayBoard() {
@@ -40,15 +40,12 @@ function createCell() {
         return marker;
     };
 
-    function changeMarker() {
-        marker = 'x';
+    function changeMarker(playerMarker) {
+        marker = playerMarker;
     }
     return {getMarker, changeMarker};
 };
 
-
-gameBoard.addPiece(1,1)
-gameBoard.displayBoard();
 
 function createPlayer(name, marker) {
     let playerName = name;
@@ -58,37 +55,39 @@ function createPlayer(name, marker) {
     return {getName, getMarker}
 }
 const gameController = (function() {
-    // create players
+
     const player1 = createPlayer('jeff', 'x');
     const player2 = createPlayer('herb', 'o');
 
+    let gameContinue = true;
+
     // set the current player
     let currentPlayer = player1;
+    console.log(currentPlayer);
 
     function swapPlayer(currentPlayer) {
         currentPlayer == player1? player2 : player1;
     }
 
-    function determinePosition() {
-        return prompt("row and column");
-    }
-
-
     console.log('what does this uncover');
     // play a round
     function playRound() {
+
+        // while game is not over
     // place a marker
         let row = prompt('row');
         let column = prompt('column');
+
         // check for valid play (ie not on filled position)
-        console.log(gameBoard.getBoard()[row][column].getMarker())
+        // console.log(gameBoard.getBoard()[row][column].getMarker())
         if (gameBoard.getBoard()[row][column].getMarker() != '0') {
             console.log("space is currently filled, try again");
             alert("space is currently filled, try again");
             return;
         }
 
-        gameBoard.addPiece(row, column)
+
+        gameBoard.addPiece(row, column, currentPlayer.getMarker());
         gameBoard.displayBoard();
 
 
