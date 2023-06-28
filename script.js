@@ -19,11 +19,14 @@ const gameBoard = (function () {
     function addPiece(row, column) {
         console.log(board[row][column]);
         board[row][column].changeMarker();
+        console.log(board[row][column]);
     }
 
     function displayBoard() {
         const test = board.map((row) => {
-            row.map((cell) => {cell})
+             return (row.map((cell) => {
+                return cell.getMarker();
+            }))
         })
         console.log(test)
     }
@@ -35,26 +38,16 @@ const gameBoard = (function () {
 function createCell() {
     let marker = '0';
 
-    function getCell() {
+    function getMarker() {
         return marker;
     };
 
     function changeMarker() {
         marker = 'x';
     }
-    return {marker, getCell, changeMarker};
+    return {marker, getMarker, changeMarker};
 };
-
-// gameBoard.addPiece(1,1);
-// gameBoard.displayBoard();
-
-console.log(
-gameBoard.getBoard()
-)
 
 
 gameBoard.addPiece(1,1)
-console.log(
-gameBoard.getBoard()
-)
 gameBoard.displayBoard();
