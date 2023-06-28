@@ -1,5 +1,6 @@
-// gameboard logic. It should get the board, change the board, and display the board.
-const gameBoard = (() => {
+console.log('h');
+// gameboard lonsogic. It should get the board, change the board, and display the board.
+const gameBoard = (function () {
     const rows = 3;
     const columns = 3;
     const board = [];
@@ -7,7 +8,7 @@ const gameBoard = (() => {
     for (let i = 0; i < rows; i++) {
         let row = [];
         for (let j = 0; j < columns; j++) {
-            row.push(cellLogic.getCell());
+            row.push(cellLogic());
         }
         board.push(row);
     }
@@ -18,28 +19,33 @@ const gameBoard = (() => {
     }
 
     // put a piece anywhere that is currently empty. when placing a piece, modify that tile.
-    function addPiece() {
-
-
+    // requires row and column
+    function addPiece(row, column) {
+        let cellToModify = board[row][column];
+        cellToModify = 'hh';
     }
 
     function displayBoard() {
 
     }
 
-});
-
-// change cell contents and get current cell
-const cellLogic = (() => {
-    let cell = 'y';
-
-    const getCell = () => cell;
-
-    // obtain player marker
-    const changeCell = {
-        // cell = playerMarker;
-    }
-    return {getCell, changeCell};
+    return {addPiece, getBoard}
 })();
 
-gameBoard();
+// change cell contents and get current cell
+function cellLogic() {
+    let cell = '0';
+
+    function getCell() {
+        return cell
+    };
+
+    // obtain player marker
+    function changeCell() {
+        // cell = playerMarker;
+        cell = 'x';
+    }
+    return {getCell, changeCell};
+};
+
+gameBoard.getBoard();
