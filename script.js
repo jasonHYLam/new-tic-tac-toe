@@ -65,9 +65,20 @@ const gameController = (function() {
     const player2 = createPlayer('herb', 'o');
 
     // set the current player
+    let currentPlayer = player1;
+
+    function swapPlayer(currentPlayer) {
+        currentPlayer == player1? player2 : player1;
+
+
+    }
+
     // play a round
+    function playRound() {
     // place a marker
     // update the board
     // check for a win condition
     // swap the current player
+
+    }
 })();
