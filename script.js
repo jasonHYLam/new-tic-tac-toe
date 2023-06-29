@@ -61,7 +61,8 @@ const gameController = (function() {
     const player1 = createPlayer('jeff', 'x');
     const player2 = createPlayer('herb', 'o');
 
-    let gameContinue = true;
+    // let gameContinue = true; //disable while developing css
+    let gameContinue = false;
     let gameWin = false;
 
     // set the current player
