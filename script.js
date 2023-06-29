@@ -54,6 +54,8 @@ function createPlayer(name, marker) {
     const getMarker = () => playerMarker;
     return {getName, getMarker}
 }
+
+
 const gameController = (function() {
 
     const player1 = createPlayer('jeff', 'x');
@@ -70,7 +72,6 @@ const gameController = (function() {
         currentPlayer = currentPlayer.getMarker() == player1.getMarker() ? player2 : player1;
     }
 
-    console.log('what does this uncover');
     // play a round
     function playRound() {
 
@@ -85,12 +86,15 @@ const gameController = (function() {
                         console.log('win detected');
                         //need some sort of boolean value to end the game
                         gameContinue = false;
+                        gameWin = true;
                         break
                         
                     // check columns if there is a win
                     } else if ((board[0][i].getMarker() == marker) && (board[1][i].getMarker() == marker) && (board[2][i].getMarker() == marker)) {
                         console.log('win detected');
                         gameContinue = false;
+                        gameWin = true;
+
 
                         break
                         //need some sort of boolean value to end the game
@@ -101,18 +105,21 @@ const gameController = (function() {
 
         function checkDraw(board) {
 
-            test = board.every((row) => {
+            //the expression determines whether all spaces are filled. If so, end the game.
+            let allSpacesFilled = false;
+            allSpacesFilled = board.every((row) => {
                 return row.every((cell) => {
                     return cell.getMarker() != "";
                 });
             })
-            console.log('testing for draw');
-            console.log(test)
-            gameContinue = false;
+            if (allSpacesFilled) {
+                gameContinue = false;
+            }
         }
 
         // while game is not over
-        for (let i = 0; i< 9; i++) {
+        while (gameContinue) {
+        // for (let i = 0; i< 9; i++) {
         // place a marker
             let row = prompt('row');
             let column = prompt('column');
@@ -128,20 +135,19 @@ const gameController = (function() {
                 return;
             }
 
-
             gameBoard.addPiece(row, column, currentPlayer.getMarker());
             gameBoard.displayBoard();
 
-            checkWin(gameBoard.getBoard()) ;
-            checkDraw(gameBoard.getBoard());
-            swapPlayer();
+            checkWin(gameBoard.getBoard());
 
-
-
-        // update the board
-        // check for a win condition
-        // swap the current player
+            if (!gameWin) {
+                checkDraw(gameBoard.getBoard());
+                swapPlayer();
+            }
         }
+        console.log('winner is:')
+        console.log(currentPlayer.getName())
+
     }
 
     playRound()
