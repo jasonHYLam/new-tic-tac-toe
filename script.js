@@ -74,7 +74,7 @@ const gameController = (function() {
     }
 
     // play a round
-    function playRound() {
+    function playGame() {
 
         function checkWin(board) {
 
@@ -154,8 +154,8 @@ const gameController = (function() {
         }
 
     }
+    return {playGame};
 
-    playRound()
 })();
 
 const displayController = (function() {
@@ -165,6 +165,7 @@ const displayController = (function() {
     const rows = 3;
     const columns = 3;
     
+    // board construction
     for (let i = 0; i < rows; i++) {
         const row = document.createElement('div');
         row.className = "board-row";
@@ -172,8 +173,36 @@ const displayController = (function() {
         for (let j = 0; j < columns; j++) {
             const cell = document.createElement('button');
             cell.className = "board-cell";
+            cell.setAttribute("data-row", i)
+            cell.setAttribute("data-column",j)
             row.appendChild(cell);
         }
     }
+
+    function updateCell() {
+
+    }
+
+    function getCells() {
+        const cells = document.querySelectorAll(".board-cell") 
+        return cells;
+    }
+
+    gameController.playGame()
+
+    function clickHandler() {
+        let cells = getCells()
+        console.log(cells);
+        cells.forEach((cell) => {
+            cell.addEventListener('click', (e) => {
+            console.log(e.target.dataset.row)
+            console.log(e.target.dataset.column)
+        })
+        })
+    }
+
+    clickHandler();
+
+
 
 })();
