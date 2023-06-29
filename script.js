@@ -60,6 +60,7 @@ const gameController = (function() {
     const player2 = createPlayer('herb', 'o');
 
     let gameContinue = true;
+    let gameWin = false;
 
     // set the current player
     let currentPlayer = player1;
@@ -83,10 +84,14 @@ const gameController = (function() {
                     if((board[i][0].getMarker() == marker) && (board[i][1].getMarker() == marker) && (board[i][2].getMarker() == marker)) {
                         console.log('win detected');
                         //need some sort of boolean value to end the game
+                        gameContinue = false;
                         break
+                        
                     // check columns if there is a win
                     } else if ((board[0][i].getMarker() == marker) && (board[1][i].getMarker() == marker) && (board[2][i].getMarker() == marker)) {
                         console.log('win detected');
+                        gameContinue = false;
+
                         break
                         //need some sort of boolean value to end the game
                     } 
@@ -95,27 +100,15 @@ const gameController = (function() {
         }
 
         function checkDraw(board) {
-            //test if first row is filled
-            //added { } to be fancy
-            // test = board.every((row) => {return row.every((cell) => {return cell.getMarker !=""})})
+
             test = board.every((row) => {
                 return row.every((cell) => {
                     return cell.getMarker() != "";
                 });
             })
-            // console.log(board[0]);
-            // console.log(board[0][0].getMarker());
-            // console.log(board[0][1].getMarker());
-            // console.log(board[0][2].getMarker());
-
-            // test1 = board[0].every((cell) => cell.getMarker() != "");//zero was here
-            // test2 = board[1].every((cell) => cell.getMarker() != "");//zero was here
-            // test3 = board[2].every((cell) => cell.getMarker() != "");//zero was here
             console.log('testing for draw');
-            // console.log(test1);
-            // console.log(test2);
-            // console.log(test3);
             console.log(test)
+            gameContinue = false;
         }
 
         // while game is not over
