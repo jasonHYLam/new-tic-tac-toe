@@ -73,13 +73,32 @@ const gameController = (function() {
     // play a round
     function playRound() {
 
+        function checkWin(board) {
+
+            const markers = ['x','o']//not sure if this works 100%
+            // const markers = ['x']
+            for (let marker of markers) {
+                for (let i = 0; i < 3; i++) {
+                    console.log(`marker is ${marker}`)
+                    if((board[i][0].getMarker() == marker) && (board[i][1].getMarker() == marker) && (board[i][2].getMarker() == marker)) {
+                        console.log('win detected');
+                        break
+                    } else if ((board[0][i].getMarker() == marker) && (board[1][i].getMarker() == marker) && (board[2][i].getMarker() == marker)) {
+                        console.log('win detected');
+                        break
+                    }
+                }
+            }
+        }
+
         // while game is not over
-        for (let i = 0; i< 4; i++) {
+        for (let i = 0; i< 6; i++) {
         // place a marker
             let row = prompt('row');
             let column = prompt('column');
 
             console.log(currentPlayer.getMarker());
+
             // check for valid play (ie not on filled position)
             // console.log(gameBoard.getBoard()[row][column].getMarker())
             if (gameBoard.getBoard()[row][column].getMarker() != '0') {
@@ -91,6 +110,8 @@ const gameController = (function() {
 
             gameBoard.addPiece(row, column, currentPlayer.getMarker());
             gameBoard.displayBoard();
+
+            checkWin(gameBoard.getBoard()) ;
             swapPlayer();
 
 
@@ -98,7 +119,6 @@ const gameController = (function() {
         // update the board
         // check for a win condition
         // swap the current player
-            
         }
     }
 
