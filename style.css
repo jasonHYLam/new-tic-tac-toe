@@ -2,4 +2,19 @@
     height: 60vh;
     width: 60vh;
     background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.board-row {
+    flex: 1;
+    background-color: bisque;
+    display: flex;
+    gap: 10px;
+}
+
+.board-cell {
+    background-color: yellowgreen;
+    flex: 1;
 }
