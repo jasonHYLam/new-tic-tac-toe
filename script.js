@@ -145,10 +145,34 @@ const gameController = (function() {
                 swapPlayer();
             }
         }
-        console.log('winner is:')
-        console.log(currentPlayer.getName())
+        if (gameWin) {
+            console.log('winner is:')
+            console.log(currentPlayer.getName())
+        } else {
+            console.log("it's a draw b");
+        }
 
     }
 
     playRound()
+})();
+
+const displayController = (function() {
+
+    let boardContainer = document.querySelector("#board-container");
+
+    const rows = 3;
+    const columns = 3;
+    
+    for (let i = 0; i < rows; i++) {
+        const row = document.createElement('div');
+        row.className = "board-row";
+        boardContainer.appendChild(row);
+        for (let j = 0; j < columns; j++) {
+            const cell = document.createElement('button');
+            cell.className = "board-cell";
+            row.appendChild(cell);
+        }
+    }
+
 })();
