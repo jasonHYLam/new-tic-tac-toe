@@ -25,8 +25,25 @@ body {
 .board-cell {
     background-color: yellowgreen;
     flex: 1;
+    font-size: 65px;
 }
 
 #reset-button.hidden {
     display: none;
+}
+
+#player-div-container {
+    display: flex;
+}
+#player-name-form {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+
+}
+
+.player-div {
+    display: flex;
+    flex-direction: column;
+
 }

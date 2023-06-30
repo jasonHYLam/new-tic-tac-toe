@@ -10,9 +10,18 @@
 <body>
     <div>tic tac toe</div>
     <div id="board-container"></div>
-    <form action="">
-        <input type="text">
-        <input type="text">
+    <form id="player-name-form" action="">
+        <div id="player-div-container">
+            <div class="player-div">
+                <label for="player-one-name">Player One:</label>
+                <input type="text" id="player-one-name" placeholder="rich boy">
+            </div>
+            <div class="player-div">
+                <label for="player-two-name">Player Two:</label>
+                <input type="text" id="player-two-name" placeholder="outlawz">
+            </div>
+        </div>
+        <button type="submit">play</button>
     </form>
     <div id="text-container"></div>
     <div>
