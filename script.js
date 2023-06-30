@@ -168,9 +168,6 @@ const gameController = (function() {
 
 const displayController = (function() {
 
-    // const game = gameController();
-
-
     // board construction
     function createBoardDOM() {
         let boardContainer = document.querySelector("#board-container");
@@ -204,11 +201,14 @@ const displayController = (function() {
         createBoardDOM();
     }
 
-     function getBoardContainer() {
+    function getBoardContainer() {
         return document.querySelector("#board-container")
-     }
+    }
 
     
+    function resetBoardDOM() {
+
+    }
 
 
     function clickHandler() {
