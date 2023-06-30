@@ -247,6 +247,13 @@ const displayController = (function() {
         }
     }
 
+    function hideElement() {
+
+    }
+
+    function showElement() {
+
+    }
 
     // initialise the board DOM and clickHandler
     createBoardDOM();
