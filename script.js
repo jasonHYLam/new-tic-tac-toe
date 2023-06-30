@@ -82,6 +82,7 @@ const gameController = (function() {
     function resetGameState() {
         gameContinue = true;
         gameWin = false;
+        currentPlayer = player1;
     }
 
     function swapPlayer() {
@@ -234,6 +235,7 @@ const displayController = (function() {
             gameController.resetGameState();
             resetEndGameText();
             hideElement("#text-container");
+            hideElement("#reset-button");
             updateBoardDOM();
         })
     }
@@ -263,5 +265,5 @@ const displayController = (function() {
     hideElement("#reset-button");
     clickHandler();
 
-    return {alertEnd}
+    return {alertEnd, showElement}
 })();
