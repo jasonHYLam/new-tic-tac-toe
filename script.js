@@ -20,6 +20,18 @@ const gameBoard = (function () {
         board[row][column].changeMarker(playerMarker);
     }
 
+    //used when restarting the game. need to reset game state
+    function resetBoard() {
+        board.map((row) => {
+            return row.map((cell) => {
+                return cell.changeMarker("");
+            })
+        })
+    }
+
+
+
+    // used to display the board in console
     function displayBoard() {
         const test = board.map((row) => {
              return (row.map((cell) => {
@@ -32,7 +44,7 @@ const gameBoard = (function () {
     return {addPiece, getBoard, displayBoard}
 })();
 
-// change cell contents and get current cell
+// factory function to change cell contents and get current cell
 function createCell() {
     let marker = '';
 
@@ -61,8 +73,7 @@ const gameController = (function() {
     const player1 = createPlayer('jeff', 'x');
     const player2 = createPlayer('herb', 'o');
 
-    let gameContinue = true; //disable while developing css
-    // let gameContinue = false;
+    let gameContinue = true;
     let gameWin = false;
 
     // set the current player
