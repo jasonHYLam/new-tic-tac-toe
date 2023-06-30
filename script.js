@@ -145,9 +145,8 @@ const gameController = (function() {
 
         //disable game if gameWin is true
         if (gameContinue) {
+            // prevent play if user clicks on non-empty space
             if (gameBoard.getBoard()[row][column].getMarker() != '') {
-                console.log("space is currently filled, try again");
-                alert("space is currently filled, try again");
                 return;
             }
             gameBoard.addPiece(row, column, currentPlayer.getMarker());
@@ -162,18 +161,16 @@ const gameController = (function() {
             }
 
             if (gameContinue == false && gameWin == false) {
-                displayController.alertEnd()
+                displayController.alertEnd('draw')
                 console.log('its a draw b');
             } else if (gameContinue == false && gameWin == true) {
                 console.log('winner is:')
                 console.log(currentPlayer.getName())
                 displayController.alertEnd(currentPlayer.getName())
             }
-
         }
-
-
     }
+
     return {playGame, resetGameState};
 })();
 
@@ -216,6 +213,11 @@ const displayController = (function() {
         return document.querySelector("#board-container")
     }
 
+    function resetEndGameText() {
+        const textContainer = document.querySelector("#text-container");
+        textContainer.textContent = "";
+    }
+
     function clickHandler() {
         // handle clicks on cell buttons
         const boardContainer = getBoardContainer();
@@ -231,15 +233,20 @@ const displayController = (function() {
         resetButton.addEventListener('click', () => {
             gameBoard.resetBoard()
             gameController.resetGameState();
+            resetEndGameText();
             updateBoardDOM();
         })
     }
 
     function alertEnd(name) {
         const textContainer = document.querySelector("#text-container");
-        textContainer.textContent = `${name} has won.`
-        console.log('win or draw who knows');
+        if (name == 'draw') {
+            textContainer.textContent = "it's a draw"
+        } else {
+            textContainer.textContent = `${name} has won.`
+        }
     }
+
 
     // initialise the board DOM and clickHandler
     createBoardDOM();
