@@ -222,9 +222,11 @@ const displayController = (function() {
 
         // handle clicks on play again button
         const resetButton = document.querySelector("#reset-button");
-        resetButton.addEventListener('click', () => gameBoard.resetBoard())
-        gameController.resetGameState();
-        updateBoardDOM();
+        resetButton.addEventListener('click', () => {
+            gameBoard.resetBoard()
+            gameController.resetGameState();
+            updateBoardDOM();
+        })
 
     }
     createBoardDOM();
