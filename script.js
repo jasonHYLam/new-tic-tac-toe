@@ -78,21 +78,40 @@ const gameController = (function() {
         function checkWin(board) {
 
             const markers = ['x','o']
+
+            mainLoop:
             for (let marker of markers) {
+
+                // check leading diagonal if there is a win
+                if ((board[0][0].getMarker() == marker) && (board[1][1].getMarker() == marker) && (board[2][2].getMarker() == marker)) {
+                        console.log('win detected');
+                        gameContinue = false;
+                        gameWin = true;
+                        break mainLoop;
+
+                // check non-leading diagonal if there is a win
+                } else if ((board[2][0].getMarker() == marker) && (board[1][1].getMarker() == marker) && (board[0][2].getMarker() == marker)) {
+                        console.log('win detected');
+                        gameContinue = false;
+                        gameWin = true;
+                        break mainLoop;
+
+                }
                 // check rows if there is a win
                 for (let i = 0; i < 3; i++) {
+
                     if((board[i][0].getMarker() == marker) && (board[i][1].getMarker() == marker) && (board[i][2].getMarker() == marker)) {
                         console.log('win detected');
                         gameContinue = false;
                         gameWin = true;
-                        break
+                        break mainLoop;
                         
                     // check columns if there is a win
                     } else if ((board[0][i].getMarker() == marker) && (board[1][i].getMarker() == marker) && (board[2][i].getMarker() == marker)) {
                         console.log('win detected');
                         gameContinue = false;
                         gameWin = true;
-                        break
+                        break mainLoop;
                     } 
                 }
             }
@@ -119,16 +138,12 @@ const gameController = (function() {
                 alert("space is currently filled, try again");
                 return;
             }
-            console.log('does this happen');
-
             gameBoard.addPiece(row, column, currentPlayer.getMarker());
             gameBoard.displayBoard();
 
             checkWin(gameBoard.getBoard());
 
             if (!gameWin) {
-                console.log('does THIS happen');
-
                 checkDraw(gameBoard.getBoard());
                 swapPlayer();
             }
