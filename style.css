@@ -1,4 +1,12 @@
+body {
+    text-align: center;
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+}
 #board-container {
+    margin-left: auto;
+    margin-right: auto;
     height: 60vh;
     width: 60vh;
     background-color: aquamarine;
