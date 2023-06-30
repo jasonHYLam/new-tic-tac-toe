@@ -41,7 +41,7 @@ const gameBoard = (function () {
         console.log(test)
     }
 
-    return {addPiece, getBoard, displayBoard}
+    return {addPiece, getBoard, displayBoard, resetBoard}
 })();
 
 // factory function to change cell contents and get current cell
@@ -78,6 +78,11 @@ const gameController = (function() {
 
     // set the current player
     let currentPlayer = player1;
+
+    function resetGameState() {
+        gameContinue = true;
+        gameWin = false;
+    }
 
     function swapPlayer() {
         currentPlayer = currentPlayer.getMarker() == player1.getMarker() ? player2 : player1;
@@ -163,7 +168,7 @@ const gameController = (function() {
         //     console.log("it's a draw b");
         // }
     }
-    return {playGame};
+    return {playGame, resetGameState};
 })();
 
 const displayController = (function() {
@@ -205,14 +210,8 @@ const displayController = (function() {
         return document.querySelector("#board-container")
     }
 
-    
-    function resetBoardDOM() {
-        const resetButton = document.querySelector();
-
-    }
-
-
     function clickHandler() {
+        // handle clicks on cell buttons
         const boardContainer = getBoardContainer();
         boardContainer.addEventListener('click', (e) => {
             if (e.target.tagName == "BUTTON") {
@@ -220,10 +219,16 @@ const displayController = (function() {
                 updateBoardDOM();
             }
         })
+
+        // handle clicks on play again button
+        const resetButton = document.querySelector("#reset-button");
+        resetButton.addEventListener('click', () => gameBoard.resetBoard())
+        gameController.resetGameState();
+        updateBoardDOM();
+
     }
     createBoardDOM();
     clickHandler();
-    resetBoardDOM();
 
     return {clickHandler};
 })();
