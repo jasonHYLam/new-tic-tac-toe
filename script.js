@@ -61,8 +61,8 @@ const gameController = (function() {
     const player1 = createPlayer('jeff', 'x');
     const player2 = createPlayer('herb', 'o');
 
-    // let gameContinue = true; //disable while developing css
-    let gameContinue = false;
+    let gameContinue = true; //disable while developing css
+    // let gameContinue = false;
     let gameWin = false;
 
     // set the current player
@@ -113,7 +113,7 @@ const gameController = (function() {
         }
 
         //disable game if gameWin is true
-        if (!gameContinue) {
+        if (gameContinue) {
             if (gameBoard.getBoard()[row][column].getMarker() != '') {
                 console.log("space is currently filled, try again");
                 alert("space is currently filled, try again");
