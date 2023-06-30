@@ -84,14 +84,12 @@ const gameController = (function() {
 
                 // check leading diagonal if there is a win
                 if ((board[0][0].getMarker() == marker) && (board[1][1].getMarker() == marker) && (board[2][2].getMarker() == marker)) {
-                        console.log('win detected');
                         gameContinue = false;
                         gameWin = true;
                         break mainLoop;
 
                 // check non-leading diagonal if there is a win
                 } else if ((board[2][0].getMarker() == marker) && (board[1][1].getMarker() == marker) && (board[0][2].getMarker() == marker)) {
-                        console.log('win detected');
                         gameContinue = false;
                         gameWin = true;
                         break mainLoop;
@@ -101,14 +99,12 @@ const gameController = (function() {
                 for (let i = 0; i < 3; i++) {
 
                     if((board[i][0].getMarker() == marker) && (board[i][1].getMarker() == marker) && (board[i][2].getMarker() == marker)) {
-                        console.log('win detected');
                         gameContinue = false;
                         gameWin = true;
                         break mainLoop;
                         
                     // check columns if there is a win
                     } else if ((board[0][i].getMarker() == marker) && (board[1][i].getMarker() == marker) && (board[2][i].getMarker() == marker)) {
-                        console.log('win detected');
                         gameContinue = false;
                         gameWin = true;
                         break mainLoop;
@@ -201,9 +197,8 @@ const displayController = (function() {
         return document.querySelector("#board-container")
      }
 
-    // i think this should go in clickHandler
-        // should take arguments, like row and column
-        // gameController.playGame()
+    
+
 
     function clickHandler() {
         const boardContainer = getBoardContainer();
