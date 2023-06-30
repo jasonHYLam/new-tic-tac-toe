@@ -70,10 +70,17 @@ function createPlayer(name, marker) {
 
 const gameController = (function() {
 
-    // let name1 = displayController.getNamesFromDOM("#player-one-name") ? displayController.getNamesFromDOM("#player-one-name") : 'Player 1'
-    // let name2 = displayController.getNamesFromDOM("#player-two-name") ? displayController.getNamesFromDOM("#player-two-name") : 'Player 2'
-    let name1 = 'sadf';
-    let name2 = 'wholio';
+
+    // kinda trash code but at least it works :)
+
+    let name1FromDOM = document.querySelector("#player-one-name").value;
+    let name2FromDOM = document.querySelector("#player-two-name").value;
+
+    let name1 = name1FromDOM ? name1FromDOM : 'Player 1'
+    let name2 = name2FromDOM ? name2FromDOM : 'Player 2'
+
+    // let name1 = 'sadf';
+    // let name2 = 'wholio';
     //try to get name from DOM
     const player1 = createPlayer(name1, 'x');
     const player2 = createPlayer(name2, 'o');
