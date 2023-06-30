@@ -261,6 +261,7 @@ const displayController = (function() {
         playButton.addEventListener('click', (e) => {
             e.preventDefault();
             activateBoard();
+            hideElement("#player-name-form");
         })
     }
 
