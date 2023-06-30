@@ -112,16 +112,14 @@ const gameController = (function() {
             }
         }
 
-        // while game is not over
-        // turn off while loop for the time being
-        // while (gameContinue) {
-        // place a marker
-            // check for valid play (ie not on filled position)
+        //disable game if gameWin is true
+        if (!gameWin) {
             if (gameBoard.getBoard()[row][column].getMarker() != '') {
                 console.log("space is currently filled, try again");
                 alert("space is currently filled, try again");
                 return;
             }
+            console.log('does this happen');
 
             gameBoard.addPiece(row, column, currentPlayer.getMarker());
             gameBoard.displayBoard();
@@ -129,17 +127,19 @@ const gameController = (function() {
             checkWin(gameBoard.getBoard());
 
             if (!gameWin) {
+                console.log('does THIS happen');
+
                 checkDraw(gameBoard.getBoard());
                 swapPlayer();
             }
-        // }//where the while loop end is
-
-        if (gameWin) {
-            console.log('winner is:')
-            console.log(currentPlayer.getName())
-        } else {
-            console.log("it's a draw b");
         }
+
+        // if (gameWin) {
+        //     console.log('winner is:')
+        //     console.log(currentPlayer.getName())
+        // } else {
+        //     console.log("it's a draw b");
+        // }
     }
     return {playGame};
 })();
@@ -182,10 +182,6 @@ const displayController = (function() {
         createBoardDOM();
     }
 
-    function getCellsFromBoard(board) {
-        const cells = board.querySelectorAll(".board-cell") 
-        return cells;
-    }
      function getBoardContainer() {
         return document.querySelector("#board-container")
      }
@@ -202,15 +198,6 @@ const displayController = (function() {
                 updateBoardDOM();
             }
         })
-        // let cells = getCellsFromBoard(boardContainer);
-        // cells.forEach((cell) => {
-        //     cell.addEventListener('click', (e) => {
-        //         console.log('whats going on in here');
-        //     console.log(`${e.target.dataset.row}, ${e.target.dataset.column}`)
-        //     gameController.playGame(e.target.dataset.row, e.target.dataset.column);
-        //     updateBoardDOM();
-        // })
-        // })
     }
     createBoardDOM();
     clickHandler();
