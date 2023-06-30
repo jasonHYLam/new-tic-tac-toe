@@ -207,6 +207,7 @@ const displayController = (function() {
 
     
     function resetBoardDOM() {
+        const resetButton = document.querySelector();
 
     }
 
@@ -222,6 +223,7 @@ const displayController = (function() {
     }
     createBoardDOM();
     clickHandler();
+    resetBoardDOM();
 
     return {clickHandler};
 })();
