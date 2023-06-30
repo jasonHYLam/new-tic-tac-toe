@@ -113,7 +113,7 @@ const gameController = (function() {
         }
 
         //disable game if gameWin is true
-        if (!gameWin) {
+        if (!gameContinue) {
             if (gameBoard.getBoard()[row][column].getMarker() != '') {
                 console.log("space is currently filled, try again");
                 alert("space is currently filled, try again");
