@@ -70,8 +70,13 @@ function createPlayer(name, marker) {
 
 const gameController = (function() {
 
-    const player1 = createPlayer('jeff', 'x');
-    const player2 = createPlayer('herb', 'o');
+    // let name1 = displayController.getNamesFromDOM("#player-one-name") ? displayController.getNamesFromDOM("#player-one-name") : 'Player 1'
+    // let name2 = displayController.getNamesFromDOM("#player-two-name") ? displayController.getNamesFromDOM("#player-two-name") : 'Player 2'
+    let name1 = 'sadf';
+    let name2 = 'wholio';
+    //try to get name from DOM
+    const player1 = createPlayer(name1, 'x');
+    const player2 = createPlayer(name2, 'o');
 
     let gameContinue = true;
     let gameWin = false;
@@ -218,6 +223,14 @@ const displayController = (function() {
         textContainer.textContent = "";
     }
 
+    function disableButtons() {
+
+    }
+
+    function activateButtons() {
+
+    }
+
     function clickHandler() {
         // handle clicks on cell buttons
         const boardContainer = getBoardContainer();
@@ -257,7 +270,11 @@ const displayController = (function() {
     function showElement(name) {
         const elementToShow = document.querySelector(name) 
         elementToShow.classList.remove("hidden");
+    }
 
+    function getNamesFromDOM(name) {
+        const element = document.querySelector(name)
+        return element.value;
     }
 
     // initialise the board DOM and clickHandler
@@ -265,5 +282,5 @@ const displayController = (function() {
     hideElement("#reset-button");
     clickHandler();
 
-    return {alertEnd, showElement}
+    return {alertEnd, showElement, getNamesFromDOM}
 })();
