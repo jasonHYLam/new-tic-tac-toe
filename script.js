@@ -183,7 +183,7 @@ const gameController = (function() {
         }
     }
 
-    return {playGame, resetGameState};
+    return {playRound: playGame, resetGameState};
 })();
 
 const displayController = (function() {
@@ -248,7 +248,7 @@ const displayController = (function() {
         const boardContainer = getBoardContainer();
         boardContainer.addEventListener('click', (e) => {
             if (e.target.tagName == "BUTTON") {
-                gameController.playGame(e.target.dataset.row, e.target.dataset.column);
+                gameController.playRound(e.target.dataset.row, e.target.dataset.column);
                 updateBoardDOM();
             }
         })
