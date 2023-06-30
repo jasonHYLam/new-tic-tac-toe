@@ -155,18 +155,24 @@ const gameController = (function() {
 
             checkWin(gameBoard.getBoard());
 
+            // while there is no winner, check for draw and swap player until the last possible move.
             if (!gameWin) {
                 checkDraw(gameBoard.getBoard());
                 swapPlayer();
             }
+
+            if (gameContinue == false && gameWin == false) {
+                displayController.alertEnd()
+                console.log('its a draw b');
+            } else if (gameContinue == false && gameWin == true) {
+                console.log('winner is:')
+                console.log(currentPlayer.getName())
+                displayController.alertEnd(currentPlayer.getName())
+            }
+
         }
 
-        // if (gameWin) {
-        //     console.log('winner is:')
-        //     console.log(currentPlayer.getName())
-        // } else {
-        //     console.log("it's a draw b");
-        // }
+
     }
     return {playGame, resetGameState};
 })();
@@ -227,10 +233,17 @@ const displayController = (function() {
             gameController.resetGameState();
             updateBoardDOM();
         })
-
     }
+
+    function alertEnd(name) {
+        const textContainer = document.querySelector("#text-container");
+        textContainer.textContent = `${name} has won.`
+        console.log('win or draw who knows');
+    }
+
+    // initialise the board DOM and clickHandler
     createBoardDOM();
     clickHandler();
 
-    return {clickHandler};
+    return {alertEnd}
 })();
