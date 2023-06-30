@@ -223,7 +223,7 @@ const displayController = (function() {
         textContainer.textContent = "";
     }
 
-    function disableButtons() {
+    function disableBoard() {
         const board = document.querySelector("#board-container");
         board.classList.add("disabled");
 
@@ -255,6 +255,8 @@ const displayController = (function() {
             hideElement("#reset-button");
             updateBoardDOM();
         })
+
+        const playButton =
     }
 
     function alertEnd(name) {
@@ -281,7 +283,9 @@ const displayController = (function() {
         return element.value;
     }
 
+
     // initialise the board DOM and clickHandler
+    disableBoard();
     createBoardDOM();
     hideElement("#reset-button");
     clickHandler();
