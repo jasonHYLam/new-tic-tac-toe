@@ -63,8 +63,12 @@ function createPlayer(name, marker) {
     let playerName = name;
     let playerMarker = marker;
     const getName = () => playerName;
+
+    const setName = (newName) => {
+        playerName = newName;
+    }
     const getMarker = () => playerMarker;
-    return {getName, getMarker}
+    return {getName, getMarker, setName}
 }
 
 
@@ -72,18 +76,18 @@ const gameController = (function() {
 
 
     // kinda trash code but at least it works :)
+    const player1Name = document.querySelector("#player-one-name");
 
-    let name1FromDOM = document.querySelector("#player-one-name").value;
-    let name2FromDOM = document.querySelector("#player-two-name").value;
 
-    let name1 = name1FromDOM ? name1FromDOM : 'Player 1'
-    let name2 = name2FromDOM ? name2FromDOM : 'Player 2'
-
-    // let name1 = 'sadf';
-    // let name2 = 'wholio';
     //try to get name from DOM
-    const player1 = createPlayer(name1, 'x');
-    const player2 = createPlayer(name2, 'o');
+    const player1 = createPlayer('Player 1', 'x');
+    const player2 = createPlayer('Player 2', 'o');
+
+    function assignNameToPlayer(name1, name2) {
+        player1.setName(name1);
+        player2.setName(name2);
+
+    }
 
     let gameContinue = true;
     let gameWin = false;
@@ -102,7 +106,7 @@ const gameController = (function() {
     }
 
     // play a round
-    function playGame(row, column) {
+    function playRound(row, column) {
 
         function checkWin(board) {
 
@@ -183,7 +187,7 @@ const gameController = (function() {
         }
     }
 
-    return {playRound: playGame, resetGameState};
+    return {playRound, resetGameState, assignNameToPlayer};
 })();
 
 const displayController = (function() {
@@ -248,6 +252,11 @@ const displayController = (function() {
         const boardContainer = getBoardContainer();
         boardContainer.addEventListener('click', (e) => {
             if (e.target.tagName == "BUTTON") {
+        const player1Name = document.querySelector("#player-one-name");
+        console.log(player1Name);
+        console.log(player1Name.value);
+        console.log(player1Name.textContent);
+
                 gameController.playRound(e.target.dataset.row, e.target.dataset.column);
                 updateBoardDOM();
             }
@@ -267,6 +276,7 @@ const displayController = (function() {
         const playButton = document.querySelector("#play-button")
         playButton.addEventListener('click', (e) => {
             e.preventDefault();
+            gameController.assignNameToPlayer(document.querySelector("#player-one-name").value, document.querySelector("#player-two-name").value);
             activateBoard();
             hideElement("#player-name-form");
         })
