@@ -116,9 +116,6 @@ const gameController = (function() {
         // turn off while loop for the time being
         // while (gameContinue) {
         // place a marker
-            // let row = prompt('row');
-            // let column = prompt('column');
-
             // check for valid play (ie not on filled position)
             if (gameBoard.getBoard()[row][column].getMarker() != '') {
                 console.log("space is currently filled, try again");
@@ -149,13 +146,14 @@ const gameController = (function() {
 
 const displayController = (function() {
 
-    let boardContainer = document.querySelector("#board-container");
+    // const game = gameController();
 
-    const rows = 3;
-    const columns = 3;
-    
+
     // board construction
     function createBoardDOM() {
+        let boardContainer = document.querySelector("#board-container");
+        const rows = 3;
+        const columns = 3;
         for (let i = 0; i < rows; i++) {
             const row = document.createElement('div');
             row.className = "board-row";
@@ -166,62 +164,56 @@ const displayController = (function() {
                 cell.setAttribute("data-row", i)
                 cell.setAttribute("data-column",j)
                 // not sure if this works
-                cell.textContent = gameBoard.getBoard()[i][j].getMarker();
+                cell.textContent =gameBoard.getBoard()[i][j].getMarker();
                 row.appendChild(cell);
             }
         }
     }
-    // i think i need a while loop in here
 
     function removeBoardDOM() {
         let boardContainer = document.querySelector("#board-container");
         while (boardContainer.lastChild) {
             boardContainer.removeChild(boardContainer.lastChild);
         }
-
     }
 
-    function displayBoardDOM(board) {
-        // convert game state into DOM
-        const rows = 3;
-        const columns = 3;
-        const arrayCells = Array.from(getCells());
-
-        for (let i = 0; i < rows; i++) {
-            for (let j = 0; j < columns; j++) {
-                // this searches for each DOM cell, and assigns it the corresponding marker
-                // i'm not sure this works just yet
-
-                    arrayCells.find((cell) => {
-                        return cell.dataset.row == i && cell.dataset.column == j;
-                    }).textContent == board[i][j].getMarker()
-            }
-        }
+    function updateBoardDOM() {
+        removeBoardDOM();
+        createBoardDOM();
     }
 
-    function getCells() {
-        const cells = document.querySelectorAll(".board-cell") 
+    function getCellsFromBoard(board) {
+        const cells = board.querySelectorAll(".board-cell") 
         return cells;
     }
+     function getBoardContainer() {
+        return document.querySelector("#board-container")
+     }
 
     // i think this should go in clickHandler
         // should take arguments, like row and column
         // gameController.playGame()
 
     function clickHandler() {
-        let cells = getCells()
-        cells.forEach((cell) => {
-            cell.addEventListener('click', (e) => {
-            console.log(`${e.target.dataset.row}, ${e.target.dataset.column}`)
-            gameController.playGame(e.target.dataset.row, e.target.dataset.column);
-
-            // displayBoardDOM(gameBoard.getBoard());
-            createBoardDOM();
+        const boardContainer = getBoardContainer();
+        boardContainer.addEventListener('click', (e) => {
+            if (e.target.tagName == "BUTTON") {
+                gameController.playGame(e.target.dataset.row, e.target.dataset.column);
+                updateBoardDOM();
+            }
         })
-        })
-
+        // let cells = getCellsFromBoard(boardContainer);
+        // cells.forEach((cell) => {
+        //     cell.addEventListener('click', (e) => {
+        //         console.log('whats going on in here');
+        //     console.log(`${e.target.dataset.row}, ${e.target.dataset.column}`)
+        //     gameController.playGame(e.target.dataset.row, e.target.dataset.column);
+        //     updateBoardDOM();
+        // })
+        // })
     }
     createBoardDOM();
     clickHandler();
-    // displayBoardDOM(gameBoard.getBoard());
+
+    return {clickHandler};
 })();
