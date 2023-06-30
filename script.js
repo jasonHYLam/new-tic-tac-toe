@@ -162,11 +162,10 @@ const gameController = (function() {
 
             if (gameContinue == false && gameWin == false) {
                 displayController.alertEnd('draw')
-                console.log('its a draw b');
+                displayController.showElement("#reset-button");
             } else if (gameContinue == false && gameWin == true) {
-                console.log('winner is:')
-                console.log(currentPlayer.getName())
                 displayController.alertEnd(currentPlayer.getName())
+                displayController.showElement("#reset-button");
             }
         }
     }
@@ -234,6 +233,7 @@ const displayController = (function() {
             gameBoard.resetBoard()
             gameController.resetGameState();
             resetEndGameText();
+            hideElement("#text-container");
             updateBoardDOM();
         })
     }
@@ -247,16 +247,20 @@ const displayController = (function() {
         }
     }
 
-    function hideElement() {
-
+    function hideElement(name) {
+        const elementToHide = document.querySelector(name) 
+        elementToHide.classList.add("hidden");
     }
 
-    function showElement() {
+    function showElement(name) {
+        const elementToShow = document.querySelector(name) 
+        elementToShow.classList.remove("hidden");
 
     }
 
     // initialise the board DOM and clickHandler
     createBoardDOM();
+    hideElement("#reset-button");
     clickHandler();
 
     return {alertEnd}
