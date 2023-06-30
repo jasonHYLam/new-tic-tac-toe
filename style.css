@@ -15,6 +15,10 @@ body {
     gap: 10px;
 }
 
+#board-container.disabled {
+    pointer-events: none;
+}
+
 .board-row {
     flex: 1;
     background-color: bisque;

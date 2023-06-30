@@ -224,10 +224,14 @@ const displayController = (function() {
     }
 
     function disableButtons() {
+        const board = document.querySelector("#board-container");
+        board.classList.add("disabled");
 
     }
 
     function activateButtons() {
+        const board = document.querySelector("#board-container");
+        board.classList.remove("disabled");
 
     }
 
