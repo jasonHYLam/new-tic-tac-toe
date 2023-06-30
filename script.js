@@ -229,7 +229,8 @@ const displayController = (function() {
 
     }
 
-    function activateButtons() {
+    function activateBoard() {
+        console.log('does this work')
         const board = document.querySelector("#board-container");
         board.classList.remove("disabled");
 
@@ -256,7 +257,11 @@ const displayController = (function() {
             updateBoardDOM();
         })
 
-        const playButton =
+        const playButton = document.querySelector("#play-button")
+        playButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            activateBoard();
+        })
     }
 
     function alertEnd(name) {
