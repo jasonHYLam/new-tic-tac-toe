@@ -80,13 +80,15 @@ body {
 .player-div input {
     background-color: var(--gap-color);
     border: none;
+    color: aliceblue;
 }
 .player-div {
     display: flex;
     flex-direction: column;
 }
 
-#play-button {
+#play-button, #reset-button {
+    margin-top: 5px;
 
     width: 150px;
     height: 50px;

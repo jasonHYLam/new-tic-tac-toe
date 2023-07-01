@@ -72,7 +72,6 @@ function createPlayer(name, marker) {
 
 const gameController = (function() {
 
-    //try to get name from DOM
     const player1 = createPlayer('Player 1', 'x');
     const player2 = createPlayer('Player 2', 'o');
 
@@ -274,7 +273,7 @@ const displayController = (function() {
         if (name == 'draw') {
             textContainer.textContent = "it's a draw"
         } else {
-            textContainer.textContent = `${name} has won.`
+            textContainer.textContent = `${name} wins!`
         }
     }
 
