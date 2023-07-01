@@ -1,4 +1,7 @@
 # new-tic-tac-toe
+
+Simple tac tac toe web game to learn about factory functions and modules. The styling is a bit sparse to focus on the coding principles.
+
 ![tic-tac-toe-screenshot](https://github.com/prodijay777/new-tic-tac-toe/assets/105083538/5b51a6a0-0acf-46da-aec4-b09cb01da9f8)
 
 ## Goals
