@@ -1,15 +1,27 @@
+:root {
+    --gap-color:rgb(49, 48, 50);
+    --secondary-text-fontsize: 20px;
+}
 body {
     text-align: center;
     /* margin: auto; */
     display: flex;
     flex-direction: column;
+    background-color: black;
+}
+
+#title {
+    color: aliceblue;
+    font-size: 50px;
+    margin-top: 4vh;
 }
 #board-container {
+    margin-top: 5vh;;
     margin-left: auto;
     margin-right: auto;
     height: 60vh;
     width: 60vh;
-    background-color: aquamarine;
+    background-color: var(--gap-color);
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -21,17 +33,24 @@ body {
 
 .board-row {
     flex: 1;
-    background-color: bisque;
+    background-color: var(--gap-color);
     display: flex;
     gap: 10px;
 }
 
 .board-cell {
-    background-color: yellowgreen;
+    background-color: rgb(46, 35, 35);
+    color: beige;
     flex: 1;
     font-size: 65px;
+    border: none;
 }
 
+#text-container {
+    font-size: 65px;
+    color: beige;
+
+}
 #reset-button.hidden {
     display: none;
 }
@@ -42,16 +61,35 @@ body {
 
 #player-div-container {
     display: flex;
+    gap: 10px;
 }
 #player-name-form {
+    margin: 40px;
     display: flex;
     flex-direction: column;
     align-self: center;
+    gap: 10px;
 
 }
 
+.player-div label {
+    color: aliceblue;
+    font-size: var(--secondary-text-fontsize);
+}
+
+.player-div input {
+    background-color: var(--gap-color);
+    border: none;
+}
 .player-div {
     display: flex;
     flex-direction: column;
+}
 
+#play-button {
+
+    width: 150px;
+    height: 50px;
+    align-self: center;
+    font-size: var(--secondary-text-fontsize);
 }

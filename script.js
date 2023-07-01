@@ -29,8 +29,6 @@ const gameBoard = (function () {
         })
     }
 
-
-
     // used to display the board in console
     function displayBoard() {
         const test = board.map((row) => {
@@ -74,19 +72,13 @@ function createPlayer(name, marker) {
 
 const gameController = (function() {
 
-
-    // kinda trash code but at least it works :)
-    const player1Name = document.querySelector("#player-one-name");
-
-
     //try to get name from DOM
     const player1 = createPlayer('Player 1', 'x');
     const player2 = createPlayer('Player 2', 'o');
 
     function assignNameToPlayer(name1, name2) {
-        player1.setName(name1);
-        player2.setName(name2);
-
+        if (name1) {player1.setName(name1)};
+        if (name2) {player2.setName(name2)};
     }
 
     let gameContinue = true;
@@ -252,11 +244,6 @@ const displayController = (function() {
         const boardContainer = getBoardContainer();
         boardContainer.addEventListener('click', (e) => {
             if (e.target.tagName == "BUTTON") {
-        const player1Name = document.querySelector("#player-one-name");
-        console.log(player1Name);
-        console.log(player1Name.value);
-        console.log(player1Name.textContent);
-
                 gameController.playRound(e.target.dataset.row, e.target.dataset.column);
                 updateBoardDOM();
             }
